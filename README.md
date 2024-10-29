@@ -49,6 +49,18 @@ A collaborative task management application built with Next.js, Supabase, Zustan
 1. Copy the Supabase project URL and Anon key from your Supabase dashboard.
 2. Enable Row-Level Security (RLS) and set policies for the `Task` and `User_Task` tables based on roles (viewer, editor, admin).
 
+### Installation
+
+1.**Clone the repository:**
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+
+2.**Install dependencies:**
+npm install
+
+3.**Start the development server:**
+npm run dev
+Open http://localhost:3000 in your browser to view the app.
 ### Environment Variables
 
 Create a `.env.local` file in the root of your project with the following environment variables:
@@ -57,16 +69,3 @@ Create a `.env.local` file in the root of your project with the following enviro
 NEXT_PUBLIC_SUPABASE_URL=<Your Supabase URL>
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<Your Supabase Anon Key>
 
-
-### Installation
-
-**Clone the repository:**
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
-
-**Install dependencies:**
-npm install
-
-**Start the development server:**
-npm run dev
-Open http://localhost:3000 in your browser to view the app.
