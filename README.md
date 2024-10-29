@@ -52,7 +52,7 @@ A collaborative task management application built with Next.js, Supabase, Zustan
 ### Installation
 
 1.**Clone the repository:**
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/kkarimwahba/to-do-list.git
 cd your-repo-name
 
 2.**Install dependencies:**
