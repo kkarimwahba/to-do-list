@@ -58,7 +58,7 @@ NEXT_PUBLIC_SUPABASE_URL=<Your Supabase URL>
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<Your Supabase Anon Key>
 
 
-##Installation
+### Installation
 
 **Clone the repository:**
 git clone https://github.com/your-username/your-repo-name.git
