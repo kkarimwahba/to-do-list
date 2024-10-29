@@ -1,29 +1,72 @@
-# Next.js + Tailwind CSS Example
+# Collaborative Task Management App
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+A collaborative task management application built with Next.js, Supabase, Zustand, and TanStack Query. This app allows multiple users to manage tasks collaboratively, with role-based access control, task assignments, and real-time notifications.
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+## Features
 
-## Preview
+- **Role-Based Access Control**: Users can have different roles (e.g., viewer, editor, admin) that control their permissions for viewing and editing tasks.
+- **Task Assignment**: Users can assign tasks to other users.
+- **Real-Time Notifications**: Users receive browser notifications when they are assigned a new task.
+- **Optimistic Updates and Data Caching**: Using TanStack Query to improve data loading and state management with optimistic UI updates.
+- **Global State Management**: Powered by Zustand to manage global state across components.
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+## Technologies
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+- **Next.js**: Framework for server-side rendering and building web applications.
+- **Supabase**: Provides authentication, database management, and real-time data syncing.
+- **Zustand**: Manages global state across the app.
+- **TanStack Query**: Manages data fetching, caching, and synchronization with Supabase.
+- **Service Workers**: For background notifications when tasks are assigned.
 
-## Deploy your own
+## Getting Started
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+### Prerequisites
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+- **Node.js**: Make sure you have Node.js installed (version 14 or higher).
+- **Supabase**: Create a Supabase account and set up a new project.
+- **Supabase Database Tables**: Create the following tables in Supabase:
 
-## How to use
+1. **Users** table:
+   - `id`: UUID (Primary Key)
+   - `email`: String
+   - `role`: String (e.g., 'viewer', 'editor', 'admin')
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+2. **Task** table:
+   - `id`: UUID (Primary Key)
+   - `name`: String
+   - `activity`: String
+   - `start_date`: Date
+   - `end_date`: Date
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+3. **User_Task** table (for task assignments):
+   - `id`: UUID (Primary Key)
+   - `task_id`: Foreign Key to Task
+   - `user_id`: Foreign Key to Users
+   - `assigned_by`: Foreign Key to Users
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+### Supabase Setup
+
+1. Copy the Supabase project URL and Anon key from your Supabase dashboard.
+2. Enable Row-Level Security (RLS) and set policies for the `Task` and `User_Task` tables based on roles (viewer, editor, admin).
+
+### Environment Variables
+
+Create a `.env.local` file in the root of your project with the following environment variables:
+
+```plaintext
+NEXT_PUBLIC_SUPABASE_URL=<Your Supabase URL>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<Your Supabase Anon Key>
+
+
+##Installation
+
+**Clone the repository:**
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+
+**Install dependencies:**
+npm install
+
+**Start the development server:**
+npm run dev
+Open http://localhost:3000 in your browser to view the app.
