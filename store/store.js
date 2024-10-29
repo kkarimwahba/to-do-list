@@ -1,7 +1,5 @@
-// store.js
 import { create } from 'zustand';
 import { supabase } from '../client';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 const useStore = create((set, get) => ({
   user: null,
@@ -14,6 +12,7 @@ const useStore = create((set, get) => ({
   setLoading: (loading) => set({ loading }),
 
   loadTasks: async () => {
+    if (typeof window === 'undefined') return; // Ensure it's client-side only
     set({ loading: true });
     const { data, error } = await supabase.from('Task').select();
     if (error) {
@@ -42,6 +41,7 @@ const useStore = create((set, get) => ({
       set({ alert: { type: 'warning', message: 'Task updated successfully!' } });
     }
   },
+  
   deleteTask: async (id) => {
     const { error } = await supabase.from('Task').delete().eq('id', id);
     if (!error) {
@@ -52,3 +52,6 @@ const useStore = create((set, get) => ({
 }));
 
 export default useStore;
+export async function getServerSideProps() {
+  return { props: {} };
+}
